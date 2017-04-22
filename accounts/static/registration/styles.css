@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-.error-message {
+.errorlist {
     color: red;
     text-align: start;
 }
@@ -63,10 +63,6 @@
 .form .message a {
     color: #4CAF50;
     text-decoration: none;
-}
-
-.form .register-form {
-    display: none;
 }
 
 .container {
