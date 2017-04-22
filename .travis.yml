@@ -10,7 +10,7 @@ env:
     - DJANGO_SETTINGS_MODULE="ares.settings"
     - PYTHONPATH="$HOME/build/tehpug/Ares"
   matrix:
-    - DJANGO=1.10 DB=postgresql
+    - DJANGO=1.11 DB=postgresql
 
 install:
   - pip install -q Django==$DJANGO
@@ -18,7 +18,7 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE ares;" -U postgres
-  - python manage.py syncdb --noinput
+  - python manage.py migrate --noinput
 
 script:
   - python manage.py test
