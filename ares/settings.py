@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'league',
 ]
 
 MIDDLEWARE = [
@@ -96,3 +97,5 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', BASE_DIR)
