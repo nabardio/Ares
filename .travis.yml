@@ -9,9 +9,9 @@ env:
   global:
     - DJANGO_SETTINGS_MODULE="ares.settings"
     - PYTHONPATH="$HOME/build/tehpug/Ares"
+    - READ_ENV_FILE=False
   matrix:
     - DB=postgresql
-    - READ_ENV_FILE=False
 
 install:
   - pip install -q -r requirements.txt
