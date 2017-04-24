@@ -4,12 +4,23 @@
 
 import os
 
+import environ
+
+# Load operating system environment variables and then prepare to use them
+env = environ.Env()
+
+# Operating System Environment variables have precedence over variables defined in the .env file,
+# that is to say variables from the .env files will only be used if not defined
+# as environment variables.
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+env.read_env(os.path.join(BASE_DIR, '.env'))
+
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secrect-key')
 
-DEBUG = os.getenv('DEBUG', 'TRUE').upper() == 'TRUE'
+DEBUG = env.bool('DJANGO_DEBUG', True)
 
 ALLOWED_HOSTS = []
 
@@ -55,18 +66,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ares.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-    'production': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DB_NAME', 'ares'),
-        'USER': os.getenv('DB_USER', 'ares'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'ares'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432')
-    }
+    'default': env.db('DATABASE_URL', default='postgres:///ares'),
 }
 
 AUTH_PASSWORD_VALIDATORS = [

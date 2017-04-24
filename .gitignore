@@ -97,3 +97,6 @@ db.sqlite3
 
 # Media Root
 /media/
+
+# Environment file
+/.env
