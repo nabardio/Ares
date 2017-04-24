@@ -3,6 +3,7 @@
 django-environ==0.4.2
 django==1.10.7
 psycopg2==2.7.1
+pytz==2017.2
 
 
 # Test
