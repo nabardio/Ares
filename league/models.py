@@ -1,12 +1,31 @@
 import os
+
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import pre_save, pre_delete
-from django.dispatch.dispatcher import receiver
+from django.conf import settings
+
+from league.storages import OverwriteStorage
+
 
 def user_directory_path(instance, filename):
-    return 'codes/league_{}/user_{}/{}'.format(instance.league.id,
-                                               instance.user.id, filename)
+    """
+    Generated a unique name for user uploaded file based on username and league id.
+    Generating file names with this methods makes categorizing files easier
+    and helps prevent file duplication problems!
+    
+        Notes:
+            Original file name provided by user will change to `code`!
+    
+    :param instance: 
+    :param filename: 
+    :return: 
+    """
+    return os.path.join(
+        'codes',
+        'league_{league_id}'.format(league_id=instance.league.id),
+        'user_{user_id}'.format(user_id=instance.user.id),
+        'code.{extension}'.format(extension=filename.split('.')[-1])
+    )
+
 
 class League(models.Model):
     title = models.CharField(max_length=200)
@@ -18,42 +37,22 @@ class League(models.Model):
     num_teams = models.PositiveSmallIntegerField('number of teams')
 
     def __str__(self):
-        return '{} ({})'.format(self.title, self.num_teams)
+        return '{title} ({num_teams})'.format(title=self.title, num_teams=self.num_teams)
+
 
 class Team(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
-    code = models.FileField(upload_to=user_directory_path)
+    code = models.FileField(upload_to=user_directory_path, storage=OverwriteStorage())
 
     def __str__(self):
         return self.user.username
 
+
 class Game(models.Model):
     datetime = models.DateTimeField('date')
     league = models.ForeignKey(League, on_delete=models.CASCADE)
-    team1 = models.ForeignKey(
-        Team, related_name='team1', on_delete=models.CASCADE)
-    team2 = models.ForeignKey(
-        Team, related_name='team2', on_delete=models.CASCADE)
+    team1 = models.ForeignKey(Team, related_name='team1', on_delete=models.CASCADE)
+    team2 = models.ForeignKey(Team, related_name='team2', on_delete=models.CASCADE)
     team1_score = models.FloatField()
     team2_score = models.FloatField()
-
-# These two auto-delete files from filesystem when they are unneeded:
-@receiver(models.signals.pre_delete, sender=Team)
-def auto_delete_file_on_delete(sender, instance, **kwargs):
-    instance.code.delete(False)
-
-@receiver(models.signals.pre_save, sender=Team)
-def auto_delete_file_on_change(sender, instance, **kwargs):
-    if not instance.pk:
-        return False
-
-    try:
-        old_file = Team.objects.get(pk=instance.pk).code
-    except Team.DoesNotExist:
-        return False
-
-    new_file = instance.code
-    if not old_file == new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)

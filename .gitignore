@@ -91,3 +91,9 @@ ENV/
 # IDE
 *.sw*
 .idea/
+
+# SQLite
+db.sqlite3
+
+# Media Root
+/media/
