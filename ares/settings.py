@@ -16,7 +16,10 @@ env = environ.Env()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-env.read_env(os.path.join(BASE_DIR, '.env'))
+
+if env.bool('READ_ENV_FILE', True):
+    env.read_env(os.path.join(BASE_DIR, '.env'))
+
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secrect-key')
 
