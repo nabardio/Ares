@@ -9,11 +9,11 @@ env:
   global:
     - DJANGO_SETTINGS_MODULE="ares.settings"
     - PYTHONPATH="$HOME/build/tehpug/Ares"
+    - READ_ENV_FILE=False
   matrix:
-    - DJANGO=1.11 DB=postgresql
+    - DB=postgresql
 
 install:
-  - pip install -q Django==$DJANGO
   - pip install -q -r requirements.txt
 
 before_script:
@@ -21,4 +21,4 @@ before_script:
   - python manage.py migrate --noinput
 
 script:
-  - python manage.py test
+  - pytest
