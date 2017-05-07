@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section id="profile">
+    <div class="card flex-center flex-column">
+      <img class="profile-avatar" src="{{ user.avatar }}">
+      <div class="profile-name">{{ user.first_name }} {{ user.last_name }}</div>
+      <div class="profile-username">{{ user.username }}</div>
+
+      <a class="button btn-danger" href="{% url 'logout' %}">Logout</a>
+    </div>
+  </section>
+{% endblock %}

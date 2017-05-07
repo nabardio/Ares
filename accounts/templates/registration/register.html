@@ -1,24 +1,23 @@
-<head>
-  <link rel="stylesheet" href="/static/registration/styles.css">
-</head>
-<div class="login-page">
-  <div class="form">
-    <form class="register-form" method="post" action="{% url 'register' %}">
-      {% csrf_token %}
-      <input type="text" name="first_name" maxlength="30" id="id_first_name" placeholder="First Name"
-      />
-      <input type="text" name="last_name" maxlength="30" id="id_last_name" placeholder="Last Name"
-      />{{ form.username.errors }}
-      <input type="text" name="username" maxlength="150" id="id_username" placeholder="Username"
-        required /> {{ form.email.errors }}
-      <input type="email" name="email" maxlength="254" id="id_email" placeholder="Email"
-        required /> {{ form.password1.errors }} {{ form.password2.errors }}
-      <input type="password" name="password1" id="password1" placeholder="Password" required
-      />
-      <input type="password" name="password2" id="password2" placeholder="Repeat Password"
-        required />
-      <button>create</button>
-    </form>
-    <p class="message">Already registered? <a href="{% url 'login' %}">Sign In</a></p>
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="card">
+    <div class="form">
+      <form class="register-form" method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <input type="text" name="first_name" maxlength="30" id="id_first_name" placeholder="First Name" />
+        <input type="text" name="last_name" maxlength="30" id="id_last_name" placeholder="Last Name" />
+        {{ form.username.errors }}
+        <input type="text" name="username" maxlength="150" id="id_username" placeholder="Username" required />
+        {{ form.email.errors }}
+        <input type="email" name="email" maxlength="254" id="id_email" placeholder="Email" required/>
+        {{ form.password1.errors }}
+        {{ form.password2.errors }}
+        <input type="password" name="password1" id="password1" placeholder="Password" required/>
+        <input type="password" name="password2" id="password2" placeholder="Repeat Password" required/>
+        <button>create</button>
+      </form>
+      <p class="message">Already registered? <a href="{% url 'login' %}">Sign In</a></p>
+    </div>
   </div>
-</div>
+{% endblock %}
