@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Battle of robots">
+  <meta name="author" content="TehPUG">
+  <meta name="url" content="https://battlefield.tehpug.ir">
+  <meta name="copyright" content="TehPUG">
+  <meta name="robots" content="index,follow">
+  <title>{{ title }}</title>
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+  <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="{% static 'images/apple-touch-icon.png' %}">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <!--[if lt IE 9]>
+	   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="loader">
+  <div class="loader"></div>
+</div>
+<header>
+  <div class="logo">
+    <a href="/">Battlefield</a>
+  </div>
+  <ul class="navigation">
+    <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="nav-item"><a href="{% url 'about' %}">About</a></li>
+    {#      <li class=nav-item><a class="" href="{% url 'leagues' %}">Leagues</a></li>#}
+    {#      <li class=nav-item><a class="" href="{% url 'participate' %}">participate</a></li>#}
+    <li class="nav-item"><a href="{% url 'contact' %}">Contact</a></li>
+    {% if user.is_authenticated %}
+      <li class="nav-item"><a href="{% url 'profile' %}">Hi, {{ user }}</a> </li>
+    {% else %}
+      <li class="nav-item"><a href="{% url 'login' %}">Login</a></li>
+    {% endif %}
+  </ul>
+</header>
+
+<div class="content">
+  {% block content %}
+  {% endblock %}
+</div>
+
+<footer>
+  <div class="copyright">
+    <p>Copyleft 2017 <a href="http://tehpug.ir">TehPUG</a>.</p>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
+</body>
+
+</html>
