@@ -22,3 +22,6 @@ before_script:
 
 script:
   - pytest
+
+notifications:
+  slack: irpython:nktz4bBWkqxloaghtnnqwWMR
