@@ -1,5 +1,5 @@
 """
-    Django settings for Aares project.
+    Django settings for Ares project.
 """
 
 import os
@@ -9,9 +9,9 @@ import environ
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
 
-# Operating System Environment variables have precedence over variables defined in the .env file,
-# that is to say variables from the .env files will only be used if not defined
-# as environment variables.
+# Operating System Environment variables have precedence over variables
+# defined in the .env file, that is to say variables from the .env files
+# will only be used if not defined as environment variables.
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,7 +21,7 @@ if env.bool('READ_ENV_FILE', True):
     env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secrect-key')
+SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
 
 DEBUG = env.bool('DJANGO_DEBUG', True)
 

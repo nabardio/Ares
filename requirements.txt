@@ -1,7 +1,7 @@
 # Base
 # -------------------------------
-django-environ==0.4.2
-django==1.10.7
+django-environ==0.4.3
+django==1.11
 psycopg2==2.7.1
 pytz==2017.2
 
