@@ -12,7 +12,17 @@ The project is deployed and working at [http://battlefield.tehpug.ir](http://bat
 ```
 $ git clone git@github.com:tehpug/Ares.git
 ```
-and install the dependencies (we recommend using [virtual environment](https://docs.python.org/3/library/venv.html))
+We are using python 3.3+. so be sure to have an updated python.
+We recommend using [virtual environment](https://docs.python.org/3/library/venv.html)
+For using virtualenv with python 3 you can just execute 
+```
+$ python3 -m venv venv # the first one is venv module and the second one is the name of virtaulenv directory to be created
+```
+Then activate the `venv` by
+```
+$ . venv/bin/activate
+```
+Install the dependencies with
 ```
 $ pip install -U requirements.txt
 ```
