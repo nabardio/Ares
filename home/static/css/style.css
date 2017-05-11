@@ -105,11 +105,28 @@ a {
 
 ul {
     list-style-type: none;
+    padding: 0;
 }
 
 header {
     background-color: #444444;
     display: flex;
+}
+
+.error-title, .error-description {
+    color: rgba(128, 128, 128, 0.8);
+    text-shadow: 1px 4px 6px #f6f6f6, 0 0 0 #444444, 1px 4px 6px #f6f6f6;
+}
+
+.error-title {
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+.error-description {
+    font-size: x-large;
+    font-weight: bold;
 }
 
 .logo {
@@ -216,6 +233,7 @@ section {
 
 .form {
     max-width: 400px;
+    margin: 20px 0;
 }
 
 .form input {
@@ -227,6 +245,18 @@ section {
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
+}
+
+.form input[type="file"] {
+    padding: 0;
+}
+
+.form input[type="file"]::-webkit-file-upload-button {
+    background-color: #777777;
+    border: none;
+    padding: 15px 10px;
+    color: #ffffff;
+
 }
 
 .form button {

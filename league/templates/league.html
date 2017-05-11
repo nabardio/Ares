@@ -14,12 +14,12 @@
       <div class="card-key">Robots</div>
       <div class="card-value">{{ league.robots.count }} robots out of {{ league.num_robots }}</div>
 
-      <a {% if is_registered or is_expired %}
+      <a {% if is_registered or is_expired or is_full %}
         class="button btn-disable"
       {% else %}
         class="button"
         href="{% url 'leagues:register' league.id %}"
-      {% endif %}>{% if is_registered %}Already Registered{% else %}Register{% endif %}</a>
+      {% endif %}>{% if is_registered %}Already Registered{% elif is_full%}FULL!{% else %}Register{% endif %}</a>
     </div>
   </section>
 {% endblock %}
