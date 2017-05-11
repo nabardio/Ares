@@ -24,13 +24,13 @@ class LeagueFactory(factory.django.DjangoModelFactory):
     registration_date_end = factory.Faker('date_time', tzinfo=pytz.timezone(settings.TIME_ZONE))
     date_start = factory.Faker('date_time', tzinfo=pytz.timezone(settings.TIME_ZONE))
     date_end = factory.Faker('date_time', tzinfo=pytz.timezone(settings.TIME_ZONE))
-    num_teams = FuzzyInteger(0, 2)
+    num_robots = FuzzyInteger(0, 2)
 
     class Meta:
         model = 'league.League'
 
 
-class TeamFactory(factory.django.DjangoModelFactory):
+class RobotFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
     league = factory.SubFactory(LeagueFactory)
     code = factory.django.FileField(
@@ -39,4 +39,4 @@ class TeamFactory(factory.django.DjangoModelFactory):
     )
 
     class Meta:
-        model = 'league.Team'
+        model = 'league.Robot'
