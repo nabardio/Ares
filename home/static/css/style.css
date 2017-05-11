@@ -100,6 +100,7 @@ body {
 a {
     text-decoration: none;
     color: #4285f4;
+    cursor: pointer;
 }
 
 ul {
@@ -170,11 +171,19 @@ header {
     color: #4285f4;
     background-color: #ffffff;
     font-weight: bold;
+    margin: 20px 5px 0 5px;
 }
 
 .btn-danger {
     background-color: #ff2020;
     color: #ffffff;
+}
+
+.btn-disable, .btn-disable:hover {
+    background-color: #ffffff !important;
+    color: #7d7d7d !important;
+    border-color: #7d7d7d !important;
+    cursor: default;
 }
 
 .button:hover {
@@ -194,6 +203,7 @@ header {
     background-color: #ffffff;
     padding: 50px 25px;
     display: flex;
+    margin: 15px;
 }
 
 section {
@@ -201,6 +211,7 @@ section {
     justify-content: center;
     max-width: 80%;
     min-width: 300px;
+    flex-wrap: wrap;
 }
 
 .form {
@@ -286,16 +297,26 @@ section {
     border-radius: 50%;
 }
 
-.profile-name {
+.card-title {
     font-size: x-large;
     font-weight: bold;
     margin-top: 10px;
     align-self: flex-start;
 }
 
-.profile-username {
+.card-description {
     margin-bottom: 30px;
     align-self: flex-start;
+}
+
+.card-key {
+    font-weight: bold;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.card-value {
+
 }
 
 footer {
@@ -316,13 +337,13 @@ footer {
 }
 
 @media all and (max-width: 800px) {
-    .navigation ul {
+    .navigation {
         justify-content: space-around;
     }
 }
 
 @media all and (max-width: 500px) {
-    .navigation ul {
+    .navigation {
         flex-direction: column;
     }
 }

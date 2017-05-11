@@ -7,13 +7,13 @@
       {% if form.errors %}
         <p class="errorlist">Your username and password didn't match. Please try again.</p>
       {% endif %}
-      <form class="login-form" method="post" action="{% url 'login' %}">
+      <form class="login-form" method="post" action="{% url 'accounts:login' %}">
         {% csrf_token %}
         <input type="text" placeholder="username" name="username" />
         <input type="password" placeholder="password" name="password" />
         <button>login</button>
       </form>
-      <p class="message">Not registered? <a href="{% url 'register' %}">Create an account</a></p>
+      <p class="message">Not registered? <a href="{% url 'accounts:register' %}">Create an account</a></p>
     </div>
   </div>
 {% endblock %}

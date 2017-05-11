@@ -3,7 +3,7 @@
 {% block content %}
   <div class="card">
     <div class="form">
-      <form class="register-form" method="post" action="{% url 'register' %}">
+      <form class="register-form" method="post" action="{% url 'accounts:register' %}">
         {% csrf_token %}
         <input type="text" name="first_name" maxlength="30" id="id_first_name" placeholder="First Name" />
         <input type="text" name="last_name" maxlength="30" id="id_last_name" placeholder="Last Name" />
@@ -17,7 +17,7 @@
         <input type="password" name="password2" id="password2" placeholder="Repeat Password" required/>
         <button>create</button>
       </form>
-      <p class="message">Already registered? <a href="{% url 'login' %}">Sign In</a></p>
+      <p class="message">Already registered? <a href="{% url 'accounts:login' %}">Sign In</a></p>
     </div>
   </div>
 {% endblock %}

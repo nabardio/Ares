@@ -1,10 +1,7 @@
-(function ($) {
-    'use strict';
+'use strict';
 
-    jQuery(document).ready(function () {
-        $(window).on('load', function() {
-            $('body').addClass('loaded');
-        });
-    });
-
-})(jQuery);
+document.onreadystatechange = function () {
+    if(document.readyState === 'complete') {
+        document.body.setAttribute("class", "loaded");
+    }
+};

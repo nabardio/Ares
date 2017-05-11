@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="card">
+    <div class="form">
+      <form class="register-form" method="post" action="{% url 'leagues:register' league.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.code.errors }}
+        {{ form.code }}
+        <button>Register</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

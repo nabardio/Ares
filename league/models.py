@@ -30,29 +30,33 @@ def user_directory_path(instance, filename):
 class League(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
-    registration_date_start = models.DateTimeField('registration starting date')
-    registration_date_end = models.DateTimeField('registration ending date')
-    date_start = models.DateTimeField('starting date')
-    date_end = models.DateTimeField('ending date')
-    num_teams = models.PositiveSmallIntegerField('number of teams')
+    registration_date_start = models.DateField('registration starting date')
+    registration_date_end = models.DateField('registration ending date')
+    date_start = models.DateField('starting date')
+    date_end = models.DateField('ending date')
+    num_robots = models.PositiveSmallIntegerField('number of robots')
 
     def __str__(self):
-        return '{title} ({num_teams})'.format(title=self.title, num_teams=self.num_teams)
+        return '{} ({})'.format(self.title, self.num_robots)
 
 
-class Team(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    league = models.ForeignKey(League, on_delete=models.CASCADE)
-    code = models.FileField(upload_to=user_directory_path, storage=OverwriteStorage())
+class Robot(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='robots')
+    league = models.ForeignKey(
+        League, related_name='robots', on_delete=models.CASCADE)
+    code = models.FileField(
+        upload_to=user_directory_path, storage=OverwriteStorage())
 
     def __str__(self):
         return self.user.username
 
 
 class Game(models.Model):
-    datetime = models.DateTimeField('date')
+    datetime = models.DateTimeField('date', null=True)
     league = models.ForeignKey(League, on_delete=models.CASCADE)
-    team1 = models.ForeignKey(Team, related_name='team1', on_delete=models.CASCADE)
-    team2 = models.ForeignKey(Team, related_name='team2', on_delete=models.CASCADE)
-    team1_score = models.FloatField()
-    team2_score = models.FloatField()
+    robot1 = models.ForeignKey(
+        Robot, related_name='robot1', on_delete=models.CASCADE)
+    robot2 = models.ForeignKey(
+        Robot, related_name='robot2', on_delete=models.CASCADE)
+    robot1_score = models.FloatField()
+    robot2_score = models.FloatField()

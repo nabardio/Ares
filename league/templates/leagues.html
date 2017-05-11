@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section id="leagues">
+    {% for league in leagues %}
+      <div class="card flex-center flex-column">
+        <div class="card-title"><a href="{% url 'leagues:detail' league.id %}">{{ league.title }}</a></div>
+        <div class="card-description">{{ league.description }}</div>
+        <div class="card-value">{{ league.robots.count }} robots out of {{ league.num_robots }}</div>
+      </div>
+    {% endfor %}
+  </section>
+{% endblock %}

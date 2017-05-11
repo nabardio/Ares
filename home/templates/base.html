@@ -30,15 +30,14 @@
     <a href="/">Battlefield</a>
   </div>
   <ul class="navigation">
-    <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
-    <li class="nav-item"><a href="{% url 'about' %}">About</a></li>
-    {#      <li class=nav-item><a class="" href="{% url 'leagues' %}">Leagues</a></li>#}
-    {#      <li class=nav-item><a class="" href="{% url 'participate' %}">participate</a></li>#}
-    <li class="nav-item"><a href="{% url 'contact' %}">Contact</a></li>
+    <li class="nav-item"><a href="{% url 'home:home' %}">Home</a></li>
+    <li class=nav-item><a href="{% url 'leagues:list' %}">Leagues</a></li>
+    <li class="nav-item"><a href="{% url 'home:about' %}">About</a></li>
+    <li class="nav-item"><a href="{% url 'home:contact' %}">Contact</a></li>
     {% if user.is_authenticated %}
-      <li class="nav-item"><a href="{% url 'profile' %}">Hi, {{ user }}</a> </li>
+      <li class="nav-item"><a href="{% url 'accounts:profile' %}">Hi, {{ user }}</a> </li>
     {% else %}
-      <li class="nav-item"><a href="{% url 'login' %}">Login</a></li>
+      <li class="nav-item"><a href="{% url 'accounts:login' %}">Login</a></li>
     {% endif %}
   </ul>
 </header>
@@ -53,9 +52,6 @@
     <p>Copyleft 2017 <a href="http://tehpug.ir">TehPUG</a>.</p>
   </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
 </body>
 
