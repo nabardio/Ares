@@ -1,13 +1,23 @@
-from django.shortcuts import render
+# -*- coding: utf-8 -*-
+from django.views.generic import TemplateView
 
 
-def index(request):
-    return render(request, 'index.html')
+class Home(TemplateView):
+    """
+    Home view
+    """
+    template_name = 'index.html'
 
 
-def about(request):
-    return render(request, 'about.html')
+class About(TemplateView):
+    """
+    About view
+    """
+    template_name = 'about.html'
 
 
-def contact(request):
-    return render(request, 'contact.html')
+class Contact(TemplateView):
+    """
+    Contact view
+    """
+    template_name = 'contact.html'

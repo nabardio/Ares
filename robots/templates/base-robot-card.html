@@ -1,0 +1,11 @@
+<div class="card-title">
+  <a href="{% url 'robots:detail' robot.id %}">{{ robot.name }}</a>
+</div>
+<hr class="separator"/>
+<div class="card-description">{{ robot.user }}</div>
+{% if robot.user == user %}
+  <div class="card-value">
+    <a class="button" href="{% url 'robots:edit' robot.id %}">Edit</a>
+    <a class="button btn-danger" href="{% url 'robots:delete' robot.id %}">Delete</a>
+  </div>
+{% endif %}

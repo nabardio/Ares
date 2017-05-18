@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ league.title }}{% endblock %}
+
+{% block content %}
+  <div class="card flex-center flex-column">
+    <div class="card-title">Robot Registration</div>
+    <hr class="separator"/>
+    <div class="form">
+      <form class="register-form" method="post" action="{% url 'leagues:register' league.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.robots }}
+        <button class="form-button">Register</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 
+{% block title %}{{ user }}{% endblock %}
+
 {% block content %}
   <section id="profile">
     <div class="card flex-center flex-column">
-      <img class="profile-avatar" src="{{ user.avatar }}">
-      <div class="card-title">{{ user.first_name }} {{ user.last_name }}</div>
-      <div class="card-description">{{ user.username }}</div>
+      <img class="profile-avatar" src="{{ profile.avatar }}">
+      <hr class="separator"/>
+      <div class="card-title">{{ profile.first_name }} {{ profile.last_name }}</div>
+      <div class="card-description">{{ profile.username }}</div>
 
-      <a class="button btn-danger" href="{% url 'accounts:logout' %}">Logout</a>
+      {% if user.is_authenticated and user == profile %}
+        <a class="button btn-danger" href="{% url 'accounts:logout' %}">Logout</a>
+      {% endif %}
     </div>
   </section>
 {% endblock %}

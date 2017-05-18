@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Leagues{% endblock %}
+
+{% block content %}
+  <section id="leagues">
+    {% if leagues.count == 0 %}
+      <div class="flex-center flex-column">
+        <div class="error-title">No Leagues are available!</div>
+        <div class="error-description">Come back later</div>
+      </div>
+    {% endif %}
+    {% for league in leagues %}
+      <div class="card flex-center flex-column">
+        {% include "base-league-card.html" %}
+      </div>
+    {% endfor %}
+  </section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ robot.name }}{% endblock %}
+
+{% block content %}
+  <div class="card flex-center flex-column">
+    <div class="card-title">Edit Robot</div>
+    <hr class="separator"/>
+    <div class="form">
+      <form class="register-form" method="post" action="{% url 'robots:edit' robot.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.name.errors }}
+        <input type="text" name="name" maxlength="150" required id="id_name" placeholder="Name..." value="{{ robot.name }}">
+        <div class="card-value"><p>
+          if you want to change the
+          <a href="{{ robot.code.url }}">current code</a>
+          upload a new one.</p></div>
+        {{ form.code.errors }}
+        <input type="file" name="code" id="id_code">
+        <button class="form-button">Save</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

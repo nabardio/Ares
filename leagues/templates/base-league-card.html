@@ -1,0 +1,21 @@
+<div class="card-title">
+  <a href="{% url 'leagues:detail' league.id %}">{{ league.title }}</a>
+</div>
+<hr class="separator"/>
+<div class="card-description">{{ league.description }}</div>
+<div class="card-key">Game:
+  <a class="card-value" href="{% url 'games:detail' league.game.id %}">
+    {{ league.game }}
+  </a>
+</div>
+<div class="card-key">Registration</div>
+<div class="card-value">
+  {{ league.registration_date_start }} - {{ league.registration_date_end }}
+</div>
+<div class="card-key">Schedule</div>
+<div class="card-value">Starts {{ league.date_start }}</div>
+<div class="card-value">Ends {{ league.date_end }}</div>
+<div class="card-key">Robots</div>
+<div class="card-value">
+  {{ league.robots.count }} robots out of {{ league.num_robots }}
+</div>

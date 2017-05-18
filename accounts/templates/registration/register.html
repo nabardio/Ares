@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}Register{% endblock %}
+
 {% block content %}
-  <div class="card">
+  <div class="card flex-center flex-column">
+    <div class="card-title">Register</div>
+    <hr class="separator"/>
     <div class="form">
       <form class="register-form" method="post" action="{% url 'accounts:register' %}">
         {% csrf_token %}
@@ -15,7 +19,7 @@
         {{ form.password2.errors }}
         <input type="password" name="password1" id="password1" placeholder="Password" required/>
         <input type="password" name="password2" id="password2" placeholder="Repeat Password" required/>
-        <button>create</button>
+        <button class="form-button">create</button>
       </form>
       <p class="message">Already registered? <a href="{% url 'accounts:login' %}">Sign In</a></p>
     </div>

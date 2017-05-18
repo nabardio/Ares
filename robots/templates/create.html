@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}New Robot{% endblock %}
+
+{% block content %}
+  <div class="card flex-center flex-column">
+    <div class="card-title">New Robot</div>
+    <hr class="separator"/>
+    <div class="form">
+      <form class="register-form" method="post" action="{% url 'robots:create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.name.errors }}
+        <input type="text" name="name" maxlength="150" required id="id_name" placeholder="Name...">
+        {{ form.code.errors }}
+        <input type="file" name="code" required id="id_code">
+        <button class="form-button">Create</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

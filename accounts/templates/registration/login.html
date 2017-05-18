@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Login{% endblock %}
+
 {% block content %}
-  <div class="card">
+  <div class="card flex-center flex-column">
+    <div class="card-title">Login</div>
+    <hr class="separator"/>
     <div class="form">
       {% if form.errors %}
         <p class="errorlist">Your username and password didn't match. Please try again.</p>
@@ -11,7 +15,7 @@
         {% csrf_token %}
         <input type="text" placeholder="username" name="username" />
         <input type="password" placeholder="password" name="password" />
-        <button>login</button>
+        <button class="form-button">login</button>
       </form>
       <p class="message">Not registered? <a href="{% url 'accounts:register' %}">Create an account</a></p>
     </div>

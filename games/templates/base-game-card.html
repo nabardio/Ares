@@ -1,0 +1,9 @@
+<div class="card-title">
+  <a href="{% url 'games:detail' game.id %}">{{ game.name }}</a>
+</div>
+<hr class="separator"/>
+<div class="card-description">{{ game.description }}</div>
+<div class="card-key">Rules</div>
+<div class="card-value">{{ game.rules }}</div>
+<div class="card-key">Instruction</div>
+<div class="card-value">{{ game.instruction }}</div>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ game.name }}{% endblock %}
+
+{% block content %}
+  <section id="game">
+    <div class="card flex-center flex-column">
+      {% include "base-game-card.html" %}
+    </div>
+  </section>
+{% endblock %}

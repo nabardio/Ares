@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Games{% endblock %}
+
+{% block content %}
+  <section id="games">
+    {% if games.count == 0 %}
+      <div class="flex-center flex-column">
+        <div class="error-title">No Games are available!</div>
+        <div class="error-description">Come back later</div>
+      </div>
+    {% endif %}
+    {% for game in games %}
+      <div class="card flex-center flex-column">
+        {% include "base-game-card.html" %}
+      </div>
+    {% endfor %}
+  </section>
+{% endblock %}

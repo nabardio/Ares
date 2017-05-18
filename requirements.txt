@@ -1,14 +1,14 @@
 # Base
 # -------------------------------
-django-environ==0.4.3
-django==1.11
-psycopg2==2.7.1
+django-environ>=0.4
+django>=1.11
+psycopg2>=2.7
 pytz==2017.2
 
 
 # Test
 # -------------------------------
-django-test-plus==1.0.17
-factory-boy==2.8.1
-pytest-django==3.1.2
-pytest-sugar==0.8.0
+django-test-plus>=1.0
+factory-boy>=2.8
+pytest-django>=3.1
+pytest-sugar>=0.8

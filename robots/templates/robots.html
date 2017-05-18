@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Robots{% endblock %}
+
+{% block content %}
+  <section id="robots">
+    {% if user.robots.count == 0 %}
+      <div class="flex-center flex-column">
+        <div class="error-title">No Robots are here!</div>
+        <div class="error-description"><a href="{% url 'robots:create' %}">Create one +</a></div>
+      </div>
+    {% else %}
+      {% for robot in user.robots.all %}
+        <div class="card flex-center flex-column">
+          {% include "base-robot-card.html" %}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </section>
+{% endblock %}

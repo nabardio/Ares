@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ robot.name }}{% endblock %}
+
+{% block content %}
+  <div class="card flex-center flex-column">
+    <div class="card-title">Delete Robot</div>
+    <hr class="separator"/>
+    <div class="form">
+      <form class="register-form" method="post" action="{% url 'robots:delete' robot.id %}"
+            enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ robot }}"?</p>
+        <div class="card-value">
+          <button class="button btn-danger">Confirm</button>
+          <a class="button" href="{% url 'robots:detail' robot.id %}">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

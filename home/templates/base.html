@@ -10,7 +10,7 @@
   <meta name="url" content="https://battlefield.tehpug.ir">
   <meta name="copyright" content="TehPUG">
   <meta name="robots" content="index,follow">
-  <title>{{ title }}</title>
+  <title>Battlefield | {% block title %}{% endblock %}</title>
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
   <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="{% static 'images/apple-touch-icon.png' %}">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -31,11 +31,17 @@
   </div>
   <ul class="navigation">
     <li class="nav-item"><a href="{% url 'home:home' %}">Home</a></li>
+    <li class=nav-item><a href="{% url 'games:list' %}">Games</a></li>
     <li class=nav-item><a href="{% url 'leagues:list' %}">Leagues</a></li>
     <li class="nav-item"><a href="{% url 'home:about' %}">About</a></li>
     <li class="nav-item"><a href="{% url 'home:contact' %}">Contact</a></li>
+
+  </ul>
+  <ul class="navigation right">
     {% if user.is_authenticated %}
-      <li class="nav-item"><a href="{% url 'accounts:profile' %}">Hi, {{ user }}</a> </li>
+      <li class="nav-item"><a href="{% url 'robots:create' %}">New Robot</a></li>
+      <li class="nav-item"><a href="{% url 'robots:user-list' %}">My Robots</a></li>
+      <li class="nav-item"><a href="{% url 'accounts:profile' user.username %}">Hi, {{ user }}</a> </li>
     {% else %}
       <li class="nav-item"><a href="{% url 'accounts:login' %}">Login</a></li>
     {% endif %}

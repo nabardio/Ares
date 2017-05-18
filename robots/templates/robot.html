@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ robot.name }}{% endblock %}
+
+{% block content %}
+  <section id="robot">
+    <div class="card flex-center flex-column">
+      {% include "base-robot-card.html" %}
+    </div>
+  </section>
+{% endblock %}

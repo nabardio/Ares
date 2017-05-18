@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ league.title }}{% endblock %}
+
+{% block content %}
+  <section id="league">
+    <div class="card flex-center flex-column">
+      {% include "base-league-card.html" %}
+      <a {% if is_registered or is_expired or is_full %}
+        class="button btn-disable"
+      {% else %}
+        class="button"
+        href="{% url 'leagues:register' league.id %}"
+      {% endif %}>
+        {% if is_registered %}
+          ALREADY REGISTERED
+        {% elif is_full %}
+          FULL!
+        {% elif is_expired %}
+          EXPIRED
+        {% else %}
+          Register
+        {% endif %}</a>
+    </div>
+  </section>
+{% endblock %}

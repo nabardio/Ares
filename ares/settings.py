@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     Django settings for Ares project.
 """
@@ -21,7 +22,7 @@ if env.bool('READ_ENV_FILE', True):
     env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
+SECRET_KEY = env.get_value('SECRET_KEY', default='dev-secret-key')
 
 DEBUG = env.bool('DJANGO_DEBUG', True)
 
@@ -35,7 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'league.apps.LeagueConfig',
+    'games.apps.GamesConfig',
+    'robots.apps.RobotsConfig',
+    'matches.apps.MatchesConfig',
+    'leagues.apps.LeaguesConfig',
     'home.apps.HomeConfig',
 ]
 
@@ -70,7 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ares.wsgi.application'
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///ares'),
+    'default': env.db('DATABASE_URL', default='sqlite:///db.sqlite3'),
 }
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -91,7 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LOGIN_URL = 'accounts:login'
-
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 LANGUAGE_CODE = 'en-us'
@@ -106,5 +110,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
-MEDIA_URL = os.getenv('MEDIA_ROOT', '/media/')
+MEDIA_ROOT = env.get_value('MEDIA_ROOT',
+                           default=os.path.join(BASE_DIR, 'media'))
+MEDIA_URL = '/media/'

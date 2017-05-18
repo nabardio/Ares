@@ -111,6 +111,8 @@ ul {
 header {
     background-color: #444444;
     display: flex;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
 }
 
 .error-title, .error-description {
@@ -144,17 +146,20 @@ header {
 }
 
 .navigation {
-    flex: 4;
+    flex: 2;
     margin: 0;
     padding: 0;
     display: flex;
+}
+
+.right {
     justify-content: flex-end;
 }
 
 .nav-item a {
     font-family: 'Roboto', sans-serif;
     color: #ffffff;
-    display: block;
+    display: flex;
     padding: 14px 16px;
 }
 
@@ -207,6 +212,7 @@ header {
     background-color: #4285f4;
     color: #ffffff;
     border-color: #4285f4;
+    font-size: inherit;
 }
 
 .btn-danger:hover {
@@ -236,7 +242,7 @@ section {
     margin: 20px 0;
 }
 
-.form input {
+.form input, .form select, .form select option {
     font-family: "Roboto", sans-serif;
     background: #f2f2f2;
     width: 100%;
@@ -259,7 +265,7 @@ section {
 
 }
 
-.form button {
+.form-button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     background: #4caf50;
@@ -271,8 +277,9 @@ section {
     cursor: pointer;
 }
 
-.form button:hover,.form button:active,.form button:focus {
+.form-button:hover,.form-button:active,.form-button:focus {
     background: #43A047;
+
 }
 
 .form .message {
@@ -331,7 +338,6 @@ section {
     font-size: x-large;
     font-weight: bold;
     margin-top: 10px;
-    align-self: flex-start;
 }
 
 .card-description {
@@ -346,6 +352,12 @@ section {
 }
 
 .card-value {
+    display: flex;
+    justify-content: center;
+}
+
+.separator {
+    width: 90%;
 
 }
 
