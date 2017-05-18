@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
-from utils.storages import OverwriteStorage
+from utils.storages import CustomStorage
 
 
 def game_code_dir(instance, filename):
@@ -34,8 +34,7 @@ class Game(models.Model):
     description = models.CharField(max_length=1000, blank=True, null=True)
     instruction = models.TextField()
     rules = models.TextField()
-    code = models.FileField(upload_to=game_code_dir,
-                            storage=OverwriteStorage())
+    code = models.FileField(upload_to=game_code_dir, storage=CustomStorage())
 
     def __str__(self):
         return self.name

@@ -2,16 +2,16 @@
 from django.core.files.storage import FileSystemStorage
 
 
-class OverwriteStorage(FileSystemStorage):
+class CustomStorage(FileSystemStorage):
     """
-    A storage that overwrites a file that already exists.
+    A storage that generate a new filename if already exists.
     """
 
     def __init__(self, location=None, base_url=None,
                  file_permissions_mode=None, directory_permissions_mode=None):
-        super(OverwriteStorage, self).__init__(location, base_url,
-                                               file_permissions_mode,
-                                               directory_permissions_mode)
+        super(CustomStorage, self).__init__(location, base_url,
+                                            file_permissions_mode,
+                                            directory_permissions_mode)
         self._counter = 0
 
     def get_available_name(self, name, max_length=None):

@@ -3,7 +3,7 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 
-from utils.storages import OverwriteStorage
+from utils.storages import CustomStorage
 
 
 def robot_code_dir(instance, filename):
@@ -35,8 +35,7 @@ class Robot(models.Model):
         },
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='robots')
-    code = models.FileField(upload_to=robot_code_dir,
-                            storage=OverwriteStorage())
+    code = models.FileField(upload_to=robot_code_dir, storage=CustomStorage())
 
     def __str__(self):
         return self.name
