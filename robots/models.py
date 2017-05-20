@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, FileExtensionValidator
 from django.db import models
 
 from utils.storages import CustomStorage
@@ -35,7 +35,9 @@ class Robot(models.Model):
         },
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='robots')
-    code = models.FileField(upload_to=robot_code_dir, storage=CustomStorage())
+    code = models.FileField(upload_to=robot_code_dir,
+                            storage=CustomStorage(),
+                            validators=[FileExtensionValidator(['py'])])
 
     def __str__(self):
         return self.name

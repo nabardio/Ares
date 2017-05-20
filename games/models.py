@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.validators import FileExtensionValidator
 from django.db import models
 
 from utils.storages import CustomStorage
@@ -34,7 +35,9 @@ class Game(models.Model):
     description = models.CharField(max_length=1000, blank=True, null=True)
     instruction = models.TextField()
     rules = models.TextField()
-    code = models.FileField(upload_to=game_code_dir, storage=CustomStorage())
+    code = models.FileField(upload_to=game_code_dir,
+                            storage=CustomStorage(),
+                            validators=[FileExtensionValidator(['py'])])
 
     def __str__(self):
         return self.name

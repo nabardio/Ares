@@ -16,6 +16,7 @@ class User(AbstractUser):
         regex=r'^[\w.+-]+$',
         message='Enter a valid username. This value may contain only letters, '
                 'numbers, and ./+/-/_ characters.')
+    email = models.EmailField('email address', unique=True)
 
     def check_avatar(self):
         """
