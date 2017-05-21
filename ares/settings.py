@@ -22,7 +22,7 @@ if env.bool('READ_ENV_FILE', True):
     env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
-SECRET_KEY = env.get_value('SECRET_KEY', default='dev-secret-key')
+SECRET_KEY = env('SECRET_KEY', default='dev-secret-key')
 
 DEBUG = env.bool('DJANGO_DEBUG', True)
 
@@ -110,6 +110,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = env.get_value('MEDIA_ROOT',
-                           default=os.path.join(BASE_DIR, 'media'))
+MEDIA_ROOT = env('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'media'))
 MEDIA_URL = '/media/'
