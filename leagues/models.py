@@ -4,6 +4,15 @@ from django.db import models
 from django.utils import timezone
 
 
+def validate_even(value):
+    """
+    Validate a number to be even
+    """
+    if value % 2 != 0:
+        raise ValidationError('%(value)s is not an even number',
+                              params={'value': value})
+
+
 class League(models.Model):
     """
     Leagues for robots
@@ -22,7 +31,8 @@ class League(models.Model):
     registration_date_end = models.DateField('registration ending date')
     date_start = models.DateField('starting date')
     date_end = models.DateField('ending date')
-    num_robots = models.PositiveSmallIntegerField('number of robots')
+    num_robots = models.PositiveSmallIntegerField('number of robots',
+                                                  validators=[validate_even])
     game = models.ForeignKey('games.Game', related_name='leagues')
     robots = models.ManyToManyField('robots.Robot', blank=True,
                                     related_name='leagues')
