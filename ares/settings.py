@@ -17,10 +17,8 @@ env = environ.Env()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 if env.bool('READ_ENV_FILE', True):
     env.read_env(os.path.join(BASE_DIR, '.env'))
-
 
 SECRET_KEY = env('SECRET_KEY', default='dev-secret-key')
 
@@ -35,6 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_beat',
+    'django_celery_results',
     'accounts.apps.AccountsConfig',
     'games.apps.GamesConfig',
     'robots.apps.RobotsConfig',
@@ -100,7 +100,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -112,3 +112,10 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = env('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'media'))
 MEDIA_URL = '/media/'
+
+CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='amqp://')
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE

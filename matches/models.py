@@ -6,7 +6,8 @@ class Match(models.Model):
     """
     Match is fight between to robot
     """
-    datetime = models.DateTimeField('date', null=True)
+    datetime = models.DateTimeField('date and time')
+    finished = models.BooleanField('finished', default=False)
     game = models.ForeignKey('games.Game', related_name='matches')
     robot1 = models.ForeignKey('robots.Robot', related_name='matches1',
                                on_delete=models.CASCADE)

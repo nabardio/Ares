@@ -15,8 +15,9 @@ class LeagueAdmin(admin.ModelAdmin):
         }),
         ('Date Information', {
             'fields': [
-                ('registration_date_start', 'registration_date_end'),
-                ('date_start', 'date_end')
+                ('registration_start', 'registration_end'),
+                ('start',),
+                ('match_start_time', 'match_end_time')
             ]
         }),
         ('Robots', {
@@ -28,10 +29,9 @@ class LeagueAdmin(admin.ModelAdmin):
 
     filter_horizontal = ('robots',)
 
-    list_display = ('title', 'game', 'num_robots', 'registration_date_start',
-                    'registration_date_end', 'date_start', 'date_end')
+    list_display = ('title', 'game', 'num_robots', 'registration_start',
+                    'registration_end', 'start')
 
-    list_filter = ('game', 'registration_date_start', 'registration_date_end',
-                   'date_start', 'date_end')
+    list_filter = ('game', 'registration_start', 'registration_end', 'start')
 
     search_fields = ('title', 'description')

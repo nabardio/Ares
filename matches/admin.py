@@ -15,7 +15,8 @@ class MatchAdmin(admin.ModelAdmin):
         }),
     ]
 
-    list_display = ('league', 'game', 'robot1', 'robot2', 'datetime')
+    list_display = ('__str__', 'robot1', 'robot2', 'league', 'game',
+                    'datetime')
 
     list_filter = ('league', 'game', 'datetime')
 

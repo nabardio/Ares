@@ -4,6 +4,9 @@ django-environ>=0.4
 django>=1.11
 psycopg2>=2.7
 pytz==2017.2
+celery>=4.0
+django-celery-beat>=1.0
+django-celery-results>=1.0
 
 
 # Test

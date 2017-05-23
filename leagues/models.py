@@ -27,10 +27,12 @@ class League(models.Model):
         },
     )
     description = models.CharField(max_length=1000, blank=True, null=True)
-    registration_date_start = models.DateField('registration starting date')
-    registration_date_end = models.DateField('registration ending date')
-    date_start = models.DateField('starting date')
-    date_end = models.DateField('ending date')
+    registration_start = models.DateTimeField('registration start time')
+    registration_end = models.DateTimeField('registration end time')
+    start = models.DateField('league start date')
+    # Times to schedule matches within a day
+    match_start_time = models.TimeField('matches start time')
+    match_end_time = models.TimeField('matches end time')
     num_robots = models.PositiveSmallIntegerField('number of robots',
                                                   validators=[validate_even])
     game = models.ForeignKey('games.Game', related_name='leagues')
@@ -41,22 +43,22 @@ class League(models.Model):
         """
         Validate the the values
         """
-        today = timezone.localdate()
-        if self.registration_date_start <= today:
+        now = timezone.now()
+        if self.registration_start <= now:
             raise ValidationError(
-                u'Registration starting date must be after today')
+                u'Registration starting time must be after now')
 
-        if self.registration_date_end <= self.registration_date_start:
+        if self.registration_end <= self.registration_start:
             raise ValidationError(
-                u'Registration ending date must be after starting date')
+                u'Registration ending time must be after its starting')
 
-        if self.date_start <= self.registration_date_end:
+        if self.start <= self.registration_end.date():
             raise ValidationError(
-                u'League starting date must be after registration ending date')
+                u'League starting time must be after registration ending time')
 
-        if self.date_end <= self.date_start:
+        if self.match_end_time <= self.match_start_time:
             raise ValidationError(
-                u'League ending date must be after its starting date')
+                u'Match ending time must be after its starting time')
 
     def __str__(self):
         return '{} ({})'.format(self.title, self.game)
