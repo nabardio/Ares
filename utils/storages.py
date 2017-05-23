@@ -25,6 +25,6 @@ class CustomStorage(FileSystemStorage):
             self._counter += 1
             filename, ext = name.rsplit('.', 1)
             new_name = filename + '_{}.{}'.format(self._counter, ext)
-            self.get_available_name(new_name, max_length)
+            return self.get_available_name(new_name, max_length)
 
         return name
