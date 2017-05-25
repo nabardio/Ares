@@ -8,3 +8,9 @@ class LeaguesConfig(AppConfig):
     """
     name = 'leagues'
 
+    def ready(self):
+        """
+        App will be ready afterward
+        """
+        from . import signals
+

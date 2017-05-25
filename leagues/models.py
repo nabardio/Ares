@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from celery.result import AsyncResult
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
@@ -38,6 +39,36 @@ class League(models.Model):
     game = models.ForeignKey('games.Game', related_name='leagues')
     robots = models.ManyToManyField('robots.Robot', blank=True,
                                     related_name='leagues')
+    _match_scheduler_id = models.CharField('match scheduler id',
+                                           max_length=36, null=True)
+
+    def __init__(self, *args, **kwargs):
+        super(League, self).__init__(*args, **kwargs)
+        self.__original_registration_end = self.registration_end
+
+    @property
+    def match_scheduler(self):
+        """
+        Match scheduler task
+        """
+        if self._match_scheduler_id:
+            return AsyncResult(self._match_scheduler_id)
+        return None
+
+    @match_scheduler.setter
+    def match_scheduler(self, scheduler):
+        if isinstance(scheduler, AsyncResult):
+            self._match_scheduler_id = scheduler.id
+
+    @match_scheduler.deleter
+    def match_scheduler(self):
+        self._match_scheduler_id = None
+
+    def has_schedule_changed(self):
+        """
+        Check if the league schedule has changed or not
+        """
+        return self.registration_end != self.__original_registration_end
 
     def clean(self):
         """
