@@ -1,3 +1,5 @@
+pika
+docker
 # Base
 # -------------------------------
 django-environ>=0.4

@@ -28,6 +28,7 @@ class League(models.Model):
         },
     )
     description = models.CharField(max_length=1000, blank=True, null=True)
+    finished = models.BooleanField('finished', default=False)
     registration_start = models.DateTimeField('registration start time')
     registration_end = models.DateTimeField('registration end time')
     start = models.DateField('league start date')

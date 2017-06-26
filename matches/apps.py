@@ -7,3 +7,9 @@ class MatchesConfig(AppConfig):
     Match app configuration
     """
     name = 'matches'
+
+    def ready(self):
+        """
+        App will be ready afterward
+        """
+        from . import signals

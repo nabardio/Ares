@@ -30,8 +30,9 @@ class LeagueAdmin(admin.ModelAdmin):
     filter_horizontal = ('robots',)
 
     list_display = ('title', 'game', 'num_robots', 'registration_start',
-                    'registration_end', 'start')
+                    'registration_end', 'start', 'finished')
 
-    list_filter = ('game', 'registration_start', 'registration_end', 'start')
+    list_filter = ('game', 'registration_start', 'registration_end',
+                   'start', 'finished')
 
     search_fields = ('title', 'description')

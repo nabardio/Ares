@@ -21,10 +21,10 @@ class CustomStorage(FileSystemStorage):
         If the filename already exists, appends an integer and checks 
         again until it finds a free one.
         """
-        if self.exists(name):
+        new_name = name
+        while self.exists(new_name):
             self._counter += 1
             filename, ext = name.rsplit('.', 1)
             new_name = filename + '_{}.{}'.format(self._counter, ext)
             return self.get_available_name(new_name, max_length)
-
-        return name
+        return new_name

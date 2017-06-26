@@ -119,3 +119,9 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
+
+DOCKER_IMAGE = 'mehdy/battlefield'
+MQ_HOST = 'localhost'
+MQ_VHOST = 'game'
+MQ_USERNAME = 'guest'
+MQ_PASSWORD = 'guest'
