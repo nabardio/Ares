@@ -22,5 +22,47 @@
           Register
         {% endif %}</a>
     </div>
+    {% if is_expired %}
+      <div class="card flex-center">
+        <div class="card-title">League Table</div>
+        <hr class="separator"/>
+        <table class="score-board">
+          <thead>
+          <tr>
+            <td>Pos.</td>
+            <td>Robot</td>
+            <td>Played</td>
+            <td>Won</td>
+            <td>Lost</td>
+            <td>Drawn</td>
+            <td>GF</td>
+            <td>GA</td>
+            <td>GD</td>
+            <td>Points</td>
+          </tr>
+          </thead>
+          <tbody>
+          {% for item in table %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>
+                <a href="{% url 'robots:detail' item.robot_id %}">
+                  {{ item.name }}
+                </a>
+              </td>
+              <td>{{ item.played }}</td>
+              <td>{{ item.won }}</td>
+              <td>{{ item.lost }}</td>
+              <td>{{ item.drawn }}</td>
+              <td>{{ item.GF }}</td>
+              <td>{{ item.GA }}</td>
+              <td>{{ item.GD }}</td>
+              <td>{{ item.points }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
   </section>
 {% endblock %}

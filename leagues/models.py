@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from celery.result import AsyncResult
 from django.core.exceptions import ValidationError
-from django.db import models
+from django.db import models, connection
 from django.utils import timezone
 
 
@@ -94,3 +94,57 @@ class League(models.Model):
 
     def __str__(self):
         return '{} ({})'.format(self.title, self.game)
+
+    @staticmethod
+    def get_table():
+        """
+        Create a table of league
+        """
+        table = list()
+        with connection.cursor() as c:
+            c.execute("""SELECT robot_id, name, 
+SUM(P) AS P, SUM(W) AS W, SUM(L) AS L, SUM(D) AS D, SUM(robot1_score) AS GF
+, SUM(robot2_score) AS GA, SUM(GD) AS GD, SUM(PTS) AS PTS
+FROM
+(SELECT robot1_id AS robot_id, robots_robot.name AS name, 1 AS P, 
+CASE WHEN robot1_score > robot2_score THEN 1 ELSE 0 END AS W,
+CASE WHEN robot1_score < robot2_score THEN 1 ELSE 0 END AS L,
+CASE WHEN robot1_score = robot2_score THEN 1 ELSE 0 END AS D,
+robot1_score, robot2_score, robot1_score-robot2_score AS GD,
+CASE 
+WHEN robot1_score > robot2_score THEN 3 
+WHEN robot1_score < robot2_score THEN 0 
+ELSE 1 END AS PTS
+FROM matches_match
+LEFT JOIN robots_robot ON matches_match.robot1_id=robots_robot.id
+WHERE matches_match.finished != 0
+UNION
+SELECT robot2_id, robots_robot.name,
+1 AS Played, 
+CASE WHEN robot1_score > robot2_score THEN 1 ELSE 0 END,
+CASE WHEN robot1_score < robot2_score THEN 1 ELSE 0 END,
+CASE WHEN robot1_score = robot2_score THEN 1 ELSE 0 END,
+robot1_score, robot2_score, robot1_score-robot2_score,
+CASE 
+WHEN robot1_score > robot2_score THEN 3 
+WHEN robot1_score < robot2_score THEN 0 
+ELSE 1 END
+FROM matches_match
+LEFT JOIN robots_robot ON matches_match.robot2_id=robots_robot.id
+WHERE matches_match.finished != 0)
+GROUP BY robot_id
+ORDER BY P DESC, PTS DESC, GD DESC""")
+            for row in c.fetchall():
+                table.append({
+                    'robot_id': row[0],
+                    'name': row[1],
+                    'played': row[2],
+                    'won': row[3],
+                    'lost': row[4],
+                    'drawn': row[5],
+                    'GF': row[6],
+                    'GA': row[7],
+                    'GD': row[8],
+                    'points': row[9]})
+
+        return table

@@ -33,16 +33,20 @@ class LeagueDetail(DetailView):
         Manipulating template context 
         """
         ctx = super(LeagueDetail, self).get_context_data(**kwargs)
-        today = timezone.localdate()
+        now = timezone.localtime()
         ctx['is_registered'] = False
         ctx['is_expired'] = False
         ctx['is_full'] = self.object.robots.count() == self.object.num_robots
         if self.request.user.is_authenticated():
             ctx['is_registered'] = self.object.robots.filter(
                 user=self.request.user).count() > 0
-        if today > self.object.registration_date_end or \
-                today < self.object.registration_date_start:
+        if now > self.object.registration_end or \
+                now < self.object.registration_start:
             ctx['is_expired'] = True
+
+        if ctx['is_expired']:
+            ctx['table'] = League.get_table()
+
         return ctx
 
 
