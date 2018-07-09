@@ -2,16 +2,17 @@
 """
     Ares URL Configuration
 """
-from django.conf.urls import url, include
+from django.urls import path, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
-    url(r'^robots/', include('robots.urls', namespace='robots')),
-    url(r'^games/', include('games.urls', namespace='games')),
-    url(r'^leagues/', include('leagues.urls', namespace='leagues')),
-    url(r'^', include('home.urls', namespace='home')),
+    path('admin/', admin.site.urls),
+    path('accounts/',
+         include(('accounts.urls', 'accounts'), namespace='accounts')),
+    path('robots/', include(('robots.urls', 'robots'), namespace='robots')),
+    path('games/', include(('games.urls', 'games'), namespace='games')),
+    path('leagues/', include(('leagues.urls','leagues'), namespace='leagues')),
+    path('', include(('home.urls', 'home'), namespace='home')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

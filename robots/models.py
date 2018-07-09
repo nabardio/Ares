@@ -34,7 +34,8 @@ class Robot(models.Model):
             'unique': 'A robot with that name already exists.',
         },
     )
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='robots')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             related_name='robots', on_delete=models.CASCADE)
     code = models.FileField(upload_to=robot_code_dir,
                             storage=CustomStorage(),
                             validators=[FileExtensionValidator(['py'])])

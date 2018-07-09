@@ -37,7 +37,8 @@ class League(models.Model):
     match_end_time = models.TimeField('matches end time')
     num_robots = models.PositiveSmallIntegerField('number of robots',
                                                   validators=[validate_even])
-    game = models.ForeignKey('games.Game', related_name='leagues')
+    game = models.ForeignKey('games.Game', related_name='leagues',
+                             on_delete=models.CASCADE)
     robots = models.ManyToManyField('robots.Robot', blank=True,
                                     related_name='leagues')
     _match_scheduler_id = models.CharField('match scheduler id',

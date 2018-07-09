@@ -1,14 +1,14 @@
 language: python
 
 python:
-  - "3.6"
+  - "3.7"
 
 services: postgresql
 
 env:
   global:
     - DJANGO_SETTINGS_MODULE="ares.settings"
-    - PYTHONPATH="$HOME/build/tehpug/Ares"
+    - PYTHONPATH="$HOME/build/nabardio/Ares"
     - READ_ENV_FILE=False
   matrix:
     - DB=postgresql
@@ -22,6 +22,3 @@ before_script:
 
 script:
   - pytest
-
-notifications:
-  slack: irpython:nktz4bBWkqxloaghtnnqwWMR

@@ -9,7 +9,8 @@ class Match(models.Model):
     """
     datetime = models.DateTimeField('date and time')
     finished = models.BooleanField('finished', default=False)
-    game = models.ForeignKey('games.Game', related_name='matches')
+    game = models.ForeignKey('games.Game', related_name='matches',
+                             on_delete=models.CASCADE)
     robot1 = models.ForeignKey('robots.Robot', related_name='matches1',
                                on_delete=models.CASCADE)
     robot2 = models.ForeignKey('robots.Robot', related_name='matches2',

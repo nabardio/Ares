@@ -1,59 +1,28 @@
 # Ares
-[![Build Status](https://travis-ci.org/tehpug/Ares.svg?branch=master)](https://travis-ci.org/tehpug/Ares)
+[![Build Status](https://travis-ci.org/nabardio/Ares.svg?branch=master)](https://travis-ci.org/nabardio/Ares)
 
-# Battlefield - http://battlefield.tehpug.ir
-Battlefield is a place for developers to have fun and learn more about coding. Developers can create robots (write codes) to play in different games at battlefield and run them against other developers robots and get score!
+# [Nabard.io](https://nabard.io)
+Nabard is a place for developers to have fun and learn more about coding. 
+Developers can create robots (some codes) to play in different games and run them against other developers robots and get score!
 
 ## Supervisor
-Battlefield needs a supervisor to handle jobs like running the games, keeping scores, managing leagues and tournaments and etc. **Ares**(this project) is the supervisor of Battlefield.
-
-### Usage
-The project is deployed and working at [http://battlefield.tehpug.ir](http://battlefield.tehpug.ir). but if you wanted to run the project for yourself clone the project
-```
-$ git clone git@github.com:tehpug/Ares.git
-```
-We are using python 3.3+. so be sure to have an updated python.
-We recommend using [virtual environment](https://docs.python.org/3/library/venv.html)
-For using virtualenv with python 3 you can just execute 
-```
-$ python3 -m venv venv # the first one is venv module and the second one is the name of virtaulenv directory to be created
-```
-Then activate the `venv` by
-```
-$ . venv/bin/activate
-```
-Install the dependencies with
-```
-$ pip install -U requirements.txt
-```
-create a `.env` file at root of the project and write the configurations you need like `DATABASE_URL`
-execute this command to create or update the schema in your database
-```
-$ python manage.py migrate
-```
-and finally run the project by this command
-```
-$ python manage.py runserver
-```
-you also need to create a superuser to access the admin panel.
+Nabard needs a supervisor to handle jobs like running the games, keeping 
+scores, managing leagues and tournaments and etc. **Ares**(this project) is 
+the supervisor.
 
 ### Why?
-Basically for fun :) but there are some other reasons. TehPUG is a great community with so much potential. One of the reasons to creating this project was to do something practical at TehPUG that it will last more than 2 or 3 sessions. with this project. we could write codes and create new robots, come up with new ideas both for robots and games and the creativity, learning and fun will last for more than years :)
+Basically for fun :)
 
 ### Contribute
-We're so happy that you're looking at the project and we know that you're may be thinking about contributing to the project and we also think it's a great idea. but **please before doing anything read this [document](CONTRIBUTING.md) carefully**.
-
-### Maintainer
-[@mehdy](https://github.com/mehdy) is currently the maintainer of the project.
-
-### Top Contributors
-1. [@geraneum](https://github.com/geraneum)
+We're so happy that you're looking at the project and we know that you're 
+may be thinking about contributing to the it and we also think it's a great 
+idea. so **please before doing anything read this [document](CONTRIBUTING.md) 
+carefully**.
 
 ### why is it called "Ares"?
-[Ares](https://en.wikipedia.org/wiki/Ares) is the greek god of war. this project is managing everything in the battlefield so it's kinda the god of war :))
-
-### Contact
-if you want to follow the project or talk to the project's developers you can join `#battlefield` at [tehpug's slack](https://irpython.slack.com/). if you're not registered yet you cain join using this [link](https://irpython.slack.com/shared_invite/MTcxOTYwNjkwNjI1LTE0OTI3NjQwMjItYzk4OGQ1NjU3Zg)
+[Ares](https://en.wikipedia.org/wiki/Ares) is the greek god of war. this 
+project is managing everything related to this robot fights. so it's kinda the 
+god of war :))
 
 ## License
 GPLv3 License. See the [LICENSE](LICENSE) file for more information.
