@@ -24,7 +24,7 @@ SECRET_KEY = env('SECRET_KEY', default='dev-secret-key')
 
 DEBUG = env.bool('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.nabard.io']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
